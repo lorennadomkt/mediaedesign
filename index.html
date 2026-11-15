@@ -688,7 +688,7 @@ textarea.in-t { min-height: 110px; resize: vertical; }
       var reel = p[1] === "r", link = el("a", "post");
       link.href = "https://www.instagram.com/" + perfil + "/" + (reel ? "reel" : "p") + "/" + p[2] + "/"; link.target = "_blank"; link.rel = "noopener";
       link.setAttribute("aria-label", (reel ? "Reel" : "Post") + " de @" + perfil + " no Instagram");
-      var img = el("img"); img.src = "capas/" + p[2] + ".jpg"; img.loading = "lazy"; img.alt = "";
+      var img = el("img"); img.src = p[2] + ".jpg"; img.loading = "lazy"; img.alt = "";
       link.appendChild(img); link.appendChild(el("span", "tag" + (reel ? " reel" : ""), reel ? "reel" : "post"));
       grid.appendChild(link);
     });
