@@ -1,0 +1,857 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Portfólio de Lorenna, social media e designer. Trabalhos, serviços e briefing para contratar."><style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><script>document.documentElement.classList.add("js");</script><title>lorenna | social media &amp; design</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* layout: faixas chapadas empilhadas (amarelo, creme com grade, preto, rosa), cartões de 2px com selos girados; estrelas giram com o tempo, com o scroll e com o mouse */
+@font-face { font-family: "BootzyTM"; src: url("fonts/BootzyTM.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+:root {
+  --cream: #F6F3EA; --ink: #141414; --pink: #F53D80; --pink-deep: #D81B60;
+  --yellow: #F4F04A; --blue: #4A9BE8; --white: #FFFFFF; --grid-line: #14141410; --basket: #F8FBD7; --hero: #FCFFDE;
+  --display: "BootzyTM", Archivo, "Arial Narrow", sans-serif;
+  --body: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "Space Mono", ui-monospace, Menlo, monospace;
+  --radius-card: 20px; --radius-sm: 16px; --line: 2px; --gap: 16px;
+  --gl: max(clamp(24px, 5vw, 64px), env(safe-area-inset-left, 0px));
+  --gr: max(clamp(24px, 5vw, 64px), env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: var(--body); font-stretch: 80%; font-size: 18px; line-height: 1.3; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--hero); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+section[id] { scroll-margin-top: 60px; }
+.band { border-bottom: var(--line) solid var(--ink); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 56px; padding-left: var(--gl); padding-right: var(--gr); display: flex; flex-direction: column; gap: 28px; position: relative; }
+.grid-bg { background-color: var(--cream); background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 32px 32px; }
+.mono { font-family: var(--mono); font-stretch: 100%; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; }
+.head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.display { font-family: var(--display); font-weight: 400; letter-spacing: -0.001em; line-height: 0.9; margin: 0; text-wrap: balance; }
+h2.display { font-size: clamp(48px, 8vw, 70px); }
+.dot { color: var(--pink); }
+.serif { font-family: var(--serif); font-stretch: 100%; font-style: italic; font-size: clamp(22px, 3vw, 26px); line-height: 1.1; margin: 0; max-width: 34em; }
+.note { font-size: 15px; margin: 0; min-height: 1.3em; }
+.sticker { display: inline-block; border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: 8px 18px 10px; font-family: var(--display); font-size: clamp(24px, 4vw, 34px); line-height: 1; letter-spacing: -0.001em; background: var(--yellow); rotate: -2deg; transition: transform .2s cubic-bezier(.2,1.6,.4,1); }
+.sticker:hover { transform: rotate(4deg) scale(1.08); }
+
+/* botões */
+.btns { display: flex; flex-wrap: wrap; gap: var(--gap); }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 10px 22px; border: var(--line) solid var(--ink); border-radius: var(--radius-card); font-family: var(--mono); font-stretch: 100%; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none; color: var(--ink); background: var(--white); cursor: pointer; transition: transform .15s ease, translate .15s ease, background .15s ease; }
+.btn:hover { transform: rotate(-1.5deg) scale(1.04); background: var(--yellow); }
+.btn.y { background: var(--yellow); } .btn.y:hover { background: var(--white); }
+.btn.k { background: var(--ink); color: var(--cream); } .btn.k:hover { background: var(--pink); color: var(--ink); }
+.btn.p { background: var(--pink); } .btn.p:hover { background: var(--yellow); }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* menu fixo */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--hero); border-bottom: var(--line) solid var(--ink); }
+.top-in { max-width: 1240px; margin: 0 auto; padding: 8px var(--gr) 8px var(--gl); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 32px; line-height: 1; text-decoration: none; letter-spacing: -0.001em; }
+.brand svg { width: 34px; height: 34px; fill: var(--pink); }
+.menu { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.menu a { font-family: var(--mono); font-stretch: 100%; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 9px 13px; border: var(--line) solid transparent; border-radius: 999px; text-decoration: none; transition: background .15s ease, transform .15s ease; }
+.menu a:hover { border-color: var(--ink); background: var(--white); transform: translateY(-2px) rotate(-2deg); }
+.menu a.on { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.menu a.cta { background: var(--yellow); border-color: var(--ink); }
+.menu a.cta.on { background: var(--pink); color: var(--ink); }
+.burger { display: none; align-items: center; min-height: 44px; padding: 8px 16px; border: var(--line) solid var(--ink); border-radius: 999px; background: var(--white); font-family: var(--mono); font-stretch: 100%; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; color: var(--ink); }
+.progress { position: absolute; left: 0; right: 0; bottom: -2px; height: 4px; background: var(--pink); transform-origin: left; transform: scaleX(0); }
+@media (max-width: 920px) {
+  .burger { display: none !important; }
+  .top-in { flex-wrap: wrap; justify-content: flex-start; gap: 4px 12px; padding-top: 6px; padding-bottom: 8px; }
+  .menu { display: flex; width: 100%; justify-content: flex-start; gap: 2px; margin-left: -8px; }
+  .menu a { padding: 7px 11px; font-size: 12px; }
+  section[id] { scroll-margin-top: 110px; }
+}
+@media (max-width: 520px) {
+  .brand { font-size: 26px; }
+  .brand svg { width: 28px; height: 28px; }
+  .top-in { padding-left: 14px; padding-right: 14px; }
+  .menu { flex-wrap: nowrap; justify-content: space-between; overflow-x: auto; margin: 0 -6px; width: calc(100% + 12px); scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a { padding: 7px 5px; font-size: 9.5px; letter-spacing: 0; white-space: nowrap; }
+  .menu { gap: 0; }
+  .menu a[href="#inicio"] { display: none; }
+}
+/* capa */
+.hero { background: var(--hero); position: relative; overflow: hidden; }
+.hero .wrap { align-items: center; text-align: center; gap: 28px; padding-block: 28px 72px; z-index: 1; }
+.hero .head { align-self: stretch; text-align: left; }
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.deco.a { width: 84px; left: 2%; top: 13%; fill: var(--pink-deep); }
+.deco.b { width: 130px; right: 7%; top: 12%; fill: var(--blue); }
+.deco.c { width: 64px; left: 14%; bottom: 12%; fill: var(--ink); }
+.deco.d { width: 84px; right: 13%; bottom: 18%; fill: var(--pink); }
+.logo { position: relative; width: min(100%, 980px); min-height: clamp(300px, 50vw, 560px); display: flex; align-items: center; justify-content: center; }
+.logo > svg { position: absolute; left: 72%; top: 70%; translate: -50% -50%; width: min(62%, 480px); height: auto; aspect-ratio: 1; fill: var(--yellow); pointer-events: none; }
+.logo-foto { position: relative; z-index: 1; height: clamp(250px, 42vw, 500px); width: auto; margin-left: clamp(-90px, -6vw, -24px); pointer-events: none; }
+.logo-in { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+.logo h1 { color: var(--pink); font-size: clamp(46px, 14vw, 150px); line-height: 0.9; display: flex; justify-content: center; }
+.ch { display: inline-block; transition: transform .25s cubic-bezier(.2,1.6,.4,1); cursor: default; }
+.ch:hover { transform: translateY(-12px) rotate(-7deg) scale(1.1); color: var(--ink); }
+.oval { margin-top: -10px; border: var(--line) solid var(--ink); border-radius: 999px; background: var(--white); padding: 6px 28px 9px; font-family: var(--display); font-size: clamp(28px, 4.5vw, 48px); line-height: 1; letter-spacing: -0.001em; rotate: -3deg; transition: transform .25s cubic-bezier(.2,1.6,.4,1); }
+.oval:hover { transform: rotate(6deg) scale(1.1); }
+.hero .serif { max-width: 28em; }
+.hero .btns { justify-content: center; }
+@media (min-width: 1px) {
+  .js .ch { opacity: 0; translate: 0 90px; rotate: -14deg; animation: letra .9s cubic-bezier(.2,1.3,.3,1) forwards; animation-delay: calc(.2s + var(--i) * .08s); }
+  .js .oval { opacity: 0; scale: 0; animation: selo .7s cubic-bezier(.2,1.6,.4,1) 1s forwards; }
+  .js .hero .sticker { opacity: 0; scale: 0; animation: selo .7s cubic-bezier(.2,1.6,.4,1) 1.2s forwards; }
+}
+@keyframes letra { to { opacity: 1; translate: 0 0; rotate: 0deg; } }
+@keyframes selo { to { opacity: 1; scale: 1; } }
+
+/* faixa que corre */
+.marquee { background: var(--ink); color: var(--cream); overflow: hidden; border-bottom: var(--line) solid var(--ink); }
+.mq { display: flex; align-items: center; gap: 28px; width: max-content; padding: 14px 0; animation: corre 36s linear infinite; }
+.marquee:hover .mq { animation-play-state: paused; }
+.mq span { font-family: var(--display); font-size: 40px; line-height: 1; letter-spacing: -0.001em; white-space: nowrap; }
+.mq svg { width: 28px; height: 28px; fill: var(--yellow); flex: none; animation: gira 9s linear infinite; }
+.mq svg:nth-of-type(even) { fill: var(--pink); }
+@keyframes corre { to { transform: translateX(-50%); } }
+@keyframes gira { to { rotate: 360deg; } }
+
+/* revelar no scroll */
+.rv { transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s), translate .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s), scale .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s), transform .25s ease-out; }
+.js .rv { opacity: 0; translate: 0 36px; scale: .95; }
+.js .rv.in { opacity: 1; translate: 0 0; scale: 1; }
+.split .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding: .12em 0 .1em; margin: -.12em 0 -.1em; }
+.split .wi { display: inline-block; }
+.js .split .wi { translate: 0 115%; rotate: 7deg; transition: translate .85s cubic-bezier(.2,.8,.2,1) calc(var(--i, 0) * .09s), rotate .85s cubic-bezier(.2,.8,.2,1) calc(var(--i, 0) * .09s); }
+.js .split.in .wi { translate: 0 0; rotate: 0deg; }
+.tilt { will-change: transform; }
+
+/* cartões */
+.card { border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: 20px; background: var(--white); color: var(--ink); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card p { margin: 0; font-size: 20px; }
+.card h3 { font-family: var(--display); font-weight: 400; font-size: 44px; line-height: 1; letter-spacing: -0.001em; margin: 0; }
+.card.y { background: var(--yellow); } .card.p { background: var(--pink); } .card.b { background: var(--blue); }
+
+/* sobre mim */
+.sobre { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--gap); align-items: stretch; }
+.duas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; gap: var(--gap); align-self: stretch; }
+.duas .card { justify-content: center; }
+.sobre .card .sticker { align-self: flex-start; }
+
+@media (hover: none) { .cart-box .mono { display: none; } }
+.duas .cart-box { grid-column: 1 / -1; }
+.sobre > .card { justify-content: center; }
+.sobre > .card p { font-size: 22px; }
+.duas .card { padding: 14px 16px; gap: 6px; }
+.duas .card h3 { font-size: 28px; }
+.duas .card p { font-size: 16px; }
+@media (max-width: 520px) { .duas { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; } .duas .cart-box { grid-row: auto; } }
+.cart-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cart { width: 100%; height: auto; display: block; rotate: -2deg; transition: transform .35s cubic-bezier(.2,1.5,.4,1), filter .35s; filter: drop-shadow(0 8px 0 #14141420); }
+.cart:hover { transform: rotate(3deg) scale(1.05); filter: drop-shadow(0 14px 0 #14141430); }
+/* serviços */
+.servicos { background: var(--ink); color: var(--cream); position: relative; overflow: hidden; }
+.servicos .serif, .servicos .note { color: var(--cream); }
+.servicos .wrap > h2, .servicos .serif, .servicos .note { text-align: center; align-self: center; }
+.servicos .note { max-width: 46em; }
+.servicos .btns { justify-content: center; }
+.servicos .deco { fill: var(--pink); width: 150px; right: 5%; top: 40px; opacity: .9; }
+.grid4, .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.grid4 .card h3, .grid2 .card h3 { font-size: 38px; }
+.card .ico { width: 34px; height: 34px; fill: var(--ink); transition: transform .4s cubic-bezier(.2,1.6,.4,1); }
+.card:hover .ico { transform: rotate(90deg) scale(1.2); }
+
+/* programas */
+.cesta { background: var(--basket); border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: 28px 20px 20px; position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.cesta-img { position: relative; width: min(100%, 760px); }
+.cesta img { width: 100%; height: auto; display: block; }
+.cesta .sticker { position: absolute; left: 8px; top: -20px; background: var(--pink); rotate: -3deg; z-index: 2; }
+.apps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.apps li { font-size: 16px; border: var(--line) solid var(--ink); border-radius: var(--radius-sm); background: var(--white); padding: 9px 16px; transition: transform .25s cubic-bezier(.2,1.6,.4,1), background .15s; cursor: default; }
+.apps li { display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; min-height: 60px; font-size: 15px; }
+@media (max-width: 760px) { .apps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.apps .lg { width: 28px; height: 28px; display: inline-grid; place-items: center; }
+.apps .lg.gpt { background: #10A37F; border-radius: 8px; }
+.apps .lg svg { width: 100%; height: 100%; transition: transform .6s cubic-bezier(.2,1.4,.4,1); }
+.apps .lg.gpt svg { width: 80%; height: 80%; }
+.apps li.app:hover .lg svg { transform: rotate(180deg) scale(1.25); }
+.apps li.app:hover .lg.gpt svg { transform: rotate(120deg) scale(1.2); }
+@media (prefers-reduced-motion: reduce) { .apps .lg svg { transition: none; } }
+.apps li:hover { transform: translateY(-6px) rotate(-3deg) scale(1.08); background: var(--yellow); }
+
+/* trabalhos */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.stat { border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: 16px 20px; background: var(--white); display: flex; flex-direction: column; gap: 6px; }
+.stat:nth-child(2) { background: var(--yellow); } .stat:nth-child(3) { background: var(--pink); }
+.stat b { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 7vw, 72px); line-height: .9; letter-spacing: -0.001em; font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: var(--line) solid var(--ink); border-radius: var(--radius-sm); background: var(--white); padding: 8px 12px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-stretch: 100%; font-size: 13px; cursor: pointer; color: var(--ink); transition: transform .2s cubic-bezier(.2,1.6,.4,1), background .15s; }
+.chip:hover { background: var(--yellow); transform: translateY(-3px) rotate(-2deg); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+.chip b { font-weight: 700; }
+.perfis { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.perfil { background: var(--white); border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.perfil[hidden] { display: none; }
+.perfil.pessoal { background: var(--blue); }
+.perfil.small { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: 16px 24px; }
+.perfil header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.perfil.small header { flex-direction: column; align-items: flex-start; gap: 8px; }
+.perfil h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 5.4vw, 58px); line-height: 1; letter-spacing: -0.001em; margin: 0; white-space: nowrap; min-width: 0; }
+.perfil.small h3 { font-size: clamp(28px, 4vw, 46px); }
+.perfil h3 a { text-decoration: none; }
+.perfil h3 a:hover { color: var(--pink); }
+.posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--gap); }
+.perfil.small .posts { grid-template-columns: repeat(auto-fill, minmax(110px, 130px)); }
+@media (min-width: 1000px) { .perfil:not(.small) .posts { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
+.post { position: relative; display: block; aspect-ratio: 4 / 5; max-width: 100%; border: var(--line) solid var(--ink); border-radius: var(--radius-sm); overflow: hidden; background: var(--cream); transition: transform .2s cubic-bezier(.2,1.6,.4,1); }
+.post:hover, .post:focus-visible { transform: translateY(-6px) rotate(-1.5deg) scale(1.05); z-index: 2; }
+.post img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post .tag { position: absolute; left: 8px; top: 8px; background: var(--yellow); border: var(--line) solid var(--ink); border-radius: 10px; padding: 2px 8px; font-family: var(--mono); font-stretch: 100%; font-size: 11px; text-transform: uppercase; }
+.post .tag.reel { background: var(--pink); }
+.post::after { content: "ver no instagram ↗"; position: absolute; left: 0; right: 0; bottom: 0; background: var(--ink); color: var(--cream); font-family: var(--mono); font-stretch: 100%; font-size: 11px; text-transform: uppercase; text-align: center; padding: 8px 4px; translate: 0 101%; transition: translate .2s ease; }
+.post:hover::after, .post:focus-visible::after { translate: 0 0; }
+
+/* contratar e formulário */
+.contratar { background: var(--pink); position: relative; overflow: hidden; }
+.contratar .deco { fill: var(--yellow); width: 170px; right: 4%; top: 36px; }
+.form-card { background: var(--white); border: var(--line) solid var(--ink); border-radius: var(--radius-card); padding: clamp(18px, 3vw, 32px); display: flex; flex-direction: column; gap: 24px; position: relative; }
+.steps { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { border: var(--line) solid var(--ink); border-radius: 999px; padding: 6px 14px; font-family: var(--mono); font-stretch: 100%; font-size: 13px; text-transform: uppercase; background: var(--white); transition: background .3s, color .3s; }
+.pill.on { background: var(--yellow); } .pill.done { background: var(--ink); color: var(--cream); }
+.step { display: none; flex-direction: column; gap: 22px; }
+.step.on { display: flex; animation: entra .5s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes entra { from { opacity: 0; translate: 24px 0; } to { opacity: 1; translate: 0 0; } }
+.step h3 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5vw, 48px); line-height: 1; margin: 0; letter-spacing: -0.001em; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; border: 0; padding: 0; margin: 0; }
+.field > label, .field > legend { font-family: var(--mono); font-stretch: 100%; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 0; margin-bottom: 6px; }
+.field .hint { font-size: 15px; margin: 0; opacity: .75; }
+.field .hint a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.field .hint a:hover { color: var(--pink-deep); }
+.in-t, select.in-t, textarea.in-t { font: inherit; font-stretch: 80%; font-size: 18px; padding: 12px 14px; border: var(--line) solid var(--ink); border-radius: var(--radius-sm); background: var(--cream); color: var(--ink); width: 100%; min-height: 48px; }
+textarea.in-t { min-height: 110px; resize: vertical; }
+.in-t:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; background: var(--white); }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt { position: relative; display: inline-flex; }
+.opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.opt span { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: var(--line) solid var(--ink); border-radius: var(--radius-sm); background: var(--white); transition: background .15s, transform .2s cubic-bezier(.2,1.6,.4,1); }
+.opt:hover span { background: var(--yellow); transform: translateY(-2px) rotate(-1deg); }
+.opt input:checked + span { background: var(--ink); color: var(--cream); }
+.opt input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+.opts.big .opt span { padding: 14px 18px; font-size: 20px; }
+.bloco { border: var(--line) dashed var(--ink); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; gap: 18px; background: var(--hero); animation: entra .45s cubic-bezier(.2,.8,.2,1) both; }
+.bloco[hidden] { display: none; }
+.bloco > .mono { opacity: .8; }
+.err { color: var(--pink-deep); font-size: 15px; margin: 0; min-height: 0; font-weight: 600; }
+.in-t[aria-invalid="true"] { border-color: var(--pink-deep); }
+.nav-btns { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.ok { display: none; flex-direction: column; align-items: flex-start; gap: 18px; position: relative; }
+.ok.show { display: flex; animation: entra .6s cubic-bezier(.2,.8,.2,1) both; }
+.ok svg { width: 96px; height: 96px; fill: var(--yellow); stroke: var(--ink); stroke-width: 2; }
+.consent { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; }
+.consent input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--ink); flex: none; }
+
+/* rodapé */
+.fim { background: var(--yellow); position: relative; overflow: hidden; border-bottom: 0; }
+.fim .wrap { padding-block: 56px 48px; }
+.fim .deco { fill: var(--pink); width: 200px; right: 5%; top: 30px; }
+.fim h2 { font-size: clamp(64px, 13vw, 120px); line-height: .88; }
+
+@media (max-width: 920px) { .deco.a, .deco.c { display: none; } .deco.b { width: 90px; } .deco.d { width: 60px; } }
+@media (max-width: 760px) { .sobre, .perfil.small { grid-template-columns: minmax(0, 1fr); } .stats { grid-template-columns: minmax(0, 1fr); } .servicos .deco, .contratar .deco, .fim .deco { width: 110px; opacity: .5; } }
+@media (max-width: 520px) { .grid4, .grid2 { grid-template-columns: minmax(0, 1fr); } .posts { grid-template-columns: repeat(2, 1fr); } .perfil.small .posts { grid-template-columns: repeat(3, minmax(0, 1fr)); } .brand { font-size: 28px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mq, .mq svg { animation: none; }
+  .js .ch, .js .oval, .js .hero .sticker { opacity: 1; translate: 0 0; rotate: 0deg; scale: 1; animation: none; }
+  .js .oval { rotate: -3deg; }
+  .js .rv { opacity: 1; translate: 0 0; scale: 1; }
+  .js .split .wi { translate: 0 0; rotate: 0deg; }
+  * { transition-duration: .01ms !important; }
+}
+</style>
+
+</head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><polygon id="estrela" points="50,0 59.2,27.8 85.4,14.6 72.2,40.8 100,50 72.2,59.2 85.4,85.4 59.2,72.2 50,100 40.8,72.2 14.6,85.4 27.8,59.2 0,50 27.8,40.8 14.6,14.6 40.8,27.8"/></defs></svg>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#inicio" aria-label="lorenna do mkt, voltar ao início"><svg class="spin" data-speed="40" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg><span>lorenna</span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu">menu</button>
+    <nav class="menu" id="menu" aria-label="Seções do site">
+      <a href="#inicio">início</a>
+      <a href="#sobre">sobre mim</a>
+      <a href="#servicos">serviços</a>
+      <a href="#programas">habilidades</a>
+      <a href="#trabalhos">trabalhos</a>
+      <a class="cta" href="#contratar">contratar</a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<section class="band hero" id="inicio">
+  <svg class="deco spin a" data-speed="14" data-depth="1.4" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <svg class="deco spin b" data-speed="-10" data-depth="0.8" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <svg class="deco spin c" data-speed="22" data-depth="1.8" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <svg class="deco spin d" data-speed="-16" data-depth="1.1" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <div class="wrap">
+    <div class="head mono"><span>@lorennadomkt</span><span></span></div>
+    <div class="logo">
+      <svg class="spin" data-speed="12" data-hover="1" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+      <div class="logo-in">
+        <h1 class="display" aria-label="lorenna do mkt">lorenna</h1>
+        <span class="oval" aria-hidden="true">do mkt</span>
+      </div>
+      <img class="logo-foto" src="foto.png" width="720" height="866" alt="Lorenna segurando uma câmera e um caderno de planejamento">
+    </div>
+    <span class="sticker">social media &amp; design</span>
+    <p class="serif">há mais de 5 anos sendo a “menina do mkt” e produzindo conteúdo, criando designs e realizando estratégias.</p>
+    <div class="btns">
+      <a class="btn y pdf mag" href="https://drive.google.com/file/d/1UJZBOWsbkscRuDUXfGTetuT2V_RkVHUM/view?usp=drivesdk" target="_blank" rel="noopener">serviços e valores <span aria-hidden="true">↗</span></a>
+      <a class="btn mag" href="#trabalhos">ver os trabalhos <span aria-hidden="true">↓</span></a>
+      <a class="btn p mag" href="#contratar">quero contratar <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="note" data-pdf-note></p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq">
+    <span>social media</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>design</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>conteúdo</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>estratégia</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>roteiro</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>edição</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>carrossel</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg>
+    <span>social media</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>design</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>conteúdo</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>estratégia</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>roteiro</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>edição</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg><span>carrossel</span><svg viewBox="0 0 100 100"><use href="#estrela"/></svg>
+  </div>
+</div>
+
+<section class="band grid-bg" id="sobre">
+  <div class="wrap">
+    <div class="head mono"><span>quem sou</span><span>@lorennadomkt</span></div>
+    <h2 class="display split"><span class="w"><span class="wi" style="--i:0">sobre</span></span> <span class="w"><span class="wi" style="--i:1">mim<span class="dot">.</span></span></span></h2>
+    <div class="sobre">
+      <div class="card tilt rv">
+        <span class="sticker">oi, eu sou a lorenna.</span>
+        <p>social media e designer, há mais de 5 anos sendo a “menina do mkt”. sou o equilíbrio entre estratégia e criatividade: gosto de transformar dados em ideias e ideias em trabalhos que conectam de verdade.</p>
+        <p>me interesso por comportamento, branding e conteúdo, sempre buscando criar algo que faça alguém parar no meio do scroll.</p>
+        <p>fora do trabalho, estou sempre atrás de referências, organizando ideias e consumindo tudo que possa virar inspiração: filmes, séries, música.</p>
+      </div>
+      <div class="duas">
+        <div class="cart-box rv">
+          <img class="cart" src="carteira.png" width="900" height="624" alt="Carteira de profissional criativa da Lorenna: social media e designer, São Paulo" loading="lazy">
+          
+        </div>
+        <div class="card y tilt rv" style="--d:.12s"><span class="mono">versão 1</span><h3>a lógica.</h3><p>transforma dados em ideias.</p></div>
+        <div class="card p tilt rv" style="--d:.24s"><span class="mono">versão 2</span><h3>a criativa.</h3><p>transforma ideias em trabalhos que conectam.</p></div>
+      </div>
+    </div>
+    <p class="serif rv">no fim, meu objetivo é simples: criar coisas que conectem e deixem marca.</p>
+  </div>
+</section>
+
+<section class="band servicos" id="servicos">
+  <svg class="deco spin" data-speed="18" data-depth="0.6" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <div class="wrap">
+    <div class="head mono"><span>o que eu faço</span><span></span></div>
+    <h2 class="display split"><span class="w"><span class="wi" style="--i:0">serviços<span class="dot">.</span></span></span></h2>
+    <p class="serif rv">eu penso, crio e edito o conteúdo do perfil inteiro, adaptando a comunicação a cada canal sem perder a identidade da marca.</p>
+    <div class="grid4">
+      <div class="card tilt rv"><svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg><span class="mono">direção</span><h3>planejamento de conteúdo</h3><p>calendário editorial, pilares e campanhas que levam o público pela jornada, com consistência e propósito em cada entrega.</p></div>
+      <div class="card y tilt rv" style="--d:.1s"><svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg><span class="mono">texto</span><h3>roteiro e copy</h3><p>textos estratégicos que vendem sem parecer venda, com narrativa que conecta e leva à ação.</p></div>
+      <div class="card p tilt rv" style="--d:.2s"><svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg><span class="mono">edição</span><h3>edição de vídeo</h3><p>reels editados e estruturados com olhar estratégico, dinâmicos e feitos para prender a atenção.</p></div>
+      <div class="card b tilt rv" style="--d:.3s"><svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg><span class="mono">design</span><h3>posts e carrosséis</h3><p>artes com a identidade da marca, pensadas para fazer alguém parar no meio do scroll.</p></div>
+    </div>
+    <div class="grid2">
+      <div class="card tilt rv"><span class="mono">sem plano mensal</span><h3>trabalhos avulsos</h3><p>post estático, carrossel, motion design e reels, cada um por vez, com até 2 rodadas de ajuste.</p></div>
+      <div class="card y tilt rv" style="--d:.12s"><span class="mono">valor fechado</span><h3>packs</h3><p>4 ou 8 posts, 3 carrosséis ou 4 reels editados em um pacote só.</p></div>
+    </div>
+    <div class="btns">
+      <a class="btn y pdf mag" href="https://drive.google.com/file/d/1UJZBOWsbkscRuDUXfGTetuT2V_RkVHUM/view?usp=drivesdk" target="_blank" rel="noopener">serviços e valores <span aria-hidden="true">↗</span></a>
+      <a class="btn mag" href="#contratar">preencher o briefing <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="note" data-pdf-note>são 3 planos mensais, do mais enxuto ao mais completo, e os valores deles estão no pdf. para avulsos e packs, preencha o briefing ou me chame no whatsapp.</p>
+  </div>
+</section>
+
+<section class="band grid-bg" id="programas">
+  <div class="wrap">
+    <div class="head mono"><span>com o que eu trabalho</span><span>10 programas</span></div>
+    <h2 class="display split"><span class="w"><span class="wi" style="--i:0">minhas</span></span> <span class="w"><span class="wi" style="--i:1">ferramentas<span class="dot">.</span></span></span></h2>
+    <div class="cesta rv">
+      
+      <ul class="apps mono">
+        <li>CapCut</li><li>Illustrator</li><li>Photoshop</li><li>Canva</li><li>Trello</li><li>Notion</li><li>Meta Business</li><li>Google Analytics</li><li class="app">Claude Code</li><li class="app">ChatGPT</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band grid-bg" id="trabalhos">
+  <div class="wrap">
+    <div class="head mono"><span>trabalhos publicados</span><span data-total></span></div>
+    <h2 class="display split"><span class="w"><span class="wi" style="--i:0">o</span></span> <span class="w"><span class="wi" style="--i:1">que</span></span> <span class="w"><span class="wi" style="--i:2">já</span></span> <span class="w"><span class="wi" style="--i:3">foi</span></span> <span class="w"><span class="wi" style="--i:4">pro</span></span> <span class="w"><span class="wi" style="--i:5">ar<span class="dot">.</span></span></span></h2>
+    <p class="serif rv">cada capa abre a publicação no instagram do perfil, dos mais recentes aos mais antigos.</p>
+    <p class="mono rv">última atualização: 15/11/2026</p>
+    <div class="stats" data-stats>
+      <div class="stat rv"><b data-count="0" data-k="posts">0</b><span class="mono">publicações</span></div>
+      <div class="stat rv" style="--d:.1s"><b data-count="0" data-k="perfis">0</b><span class="mono">perfis</span></div>
+      <div class="stat rv" style="--d:.2s"><b data-count="5" data-suf="+">0</b><span class="mono">anos de mkt</span></div>
+    </div>
+    <div class="chips" data-chips role="group" aria-label="Filtrar por perfil"></div>
+    <div data-perfis class="perfis"></div>
+  </div>
+</section>
+
+<section class="band contratar" id="contratar">
+  <svg class="deco spin" data-speed="-20" data-depth="0.7" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <div class="wrap">
+    <div class="head mono"><span>quer trabalhar comigo</span><span>briefing de serviço</span></div>
+    <h2 class="display split"><span class="w"><span class="wi" style="--i:0">bora</span></span> <span class="w"><span class="wi" style="--i:1">começar<span class="dot" style="color:var(--ink)">?</span></span></span></h2>
+    <p class="serif rv">me conta o que você precisa. são 3 passos rápidos e eu respondo pelo whatsapp.</p>
+
+    <div class="form-card rv" data-form-card>
+      <form id="briefing" novalidate autocomplete="on">
+        <div class="steps" aria-hidden="true" style="margin-bottom:22px">
+          <span class="pill on" data-pill="1">1 você</span><span class="pill" data-pill="2">2 o que precisa</span><span class="pill" data-pill="3">3 detalhes</span>
+        </div>
+        <div class="hp" aria-hidden="true"><label>não preencha<input type="text" name="empresa_site" tabindex="-1" autocomplete="off"></label></div>
+
+        <section class="step on" data-step="1" aria-label="Passo 1, sobre você">
+          <h3>primeiro, quem é você.</h3>
+          <div class="row2">
+            <div class="field"><label for="f-nome">seu nome</label><input class="in-t" id="f-nome" name="nome" type="text" autocomplete="name" required><p class="err" data-err="nome"></p></div>
+            <div class="field"><label for="f-whats">whatsapp</label><input class="in-t" id="f-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required><p class="err" data-err="whatsapp"></p></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="f-email">e-mail (opcional)</label><input class="in-t" id="f-email" name="email" type="email" autocomplete="email"><p class="err" data-err="email"></p></div>
+            <div class="field"><label for="f-insta">instagram ou site (opcional)</label><input class="in-t" id="f-insta" name="instagram" type="text" placeholder="@seuperfil"></div>
+          </div>
+          <fieldset class="field"><legend>você é</legend>
+            <div class="opts" data-group="perfil_tipo">
+              <label class="opt"><input type="radio" name="perfil_tipo" value="marca pessoal" required><span>marca pessoal</span></label>
+              <label class="opt"><input type="radio" name="perfil_tipo" value="profissional liberal"><span>profissional liberal</span></label>
+              <label class="opt"><input type="radio" name="perfil_tipo" value="empresa pequena"><span>empresa pequena</span></label>
+              <label class="opt"><input type="radio" name="perfil_tipo" value="empresa média ou grande"><span>empresa média ou grande</span></label>
+              <label class="opt"><input type="radio" name="perfil_tipo" value="agência ou parceiro"><span>agência ou parceiro</span></label>
+              <label class="opt"><input type="radio" name="perfil_tipo" value="outro"><span>outro</span></label>
+            </div><p class="err" data-err="perfil_tipo"></p>
+          </fieldset>
+          <div class="field"><label for="f-ramo">ramo de atuação</label><input class="in-t" id="f-ramo" name="ramo" type="text" placeholder="ex.: odontologia, moda, energia solar" required><p class="err" data-err="ramo"></p></div>
+          <div class="nav-btns"><span></span><button class="btn y" type="button" data-next>continuar <span aria-hidden="true">→</span></button></div>
+        </section>
+
+        <section class="step" data-step="2" aria-label="Passo 2, o que você precisa">
+          <h3>o que você precisa.</h3>
+          <fieldset class="field"><legend>marque tudo o que faz sentido</legend>
+            <div class="opts big" data-group="servicos">
+              <label class="opt"><input type="checkbox" name="servicos" value="planejamento de conteúdo" data-block="plan"><span>planejamento de conteúdo</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="roteiro e copy" data-block="rot"><span>roteiro e copy</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="edição de vídeo" data-block="ed"><span>edição de vídeo</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="posts e carrosséis" data-block="de"><span>posts e carrosséis</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="avulso ou pack" data-block="av"><span>avulso ou pack</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="site ou página única" data-block="si"><span>site ou página única</span></label>
+              <label class="opt"><input type="checkbox" name="servicos" value="ainda não sei" data-block="nsei"><span>ainda não sei</span></label>
+            </div><p class="err" data-err="servicos"></p>
+          </fieldset>
+
+          <div class="bloco" data-bloco="plan" hidden>
+            <span class="mono">sobre o planejamento</span>
+            <fieldset class="field"><legend>como está seu conteúdo hoje?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="plan_situacao" value="ainda não posto"><span>ainda não posto</span></label>
+              <label class="opt"><input type="radio" name="plan_situacao" value="posto sem planejar"><span>posto sem planejar</span></label>
+              <label class="opt"><input type="radio" name="plan_situacao" value="tenho calendário mas não cumpro"><span>tenho calendário mas não cumpro</span></label>
+              <label class="opt"><input type="radio" name="plan_situacao" value="tenho processo e quero evoluir"><span>tenho processo e quero evoluir</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>em quais redes?</legend><div class="opts">
+              <label class="opt"><input type="checkbox" name="plan_redes" value="Instagram"><span>Instagram</span></label>
+              <label class="opt"><input type="checkbox" name="plan_redes" value="TikTok"><span>TikTok</span></label>
+              <label class="opt"><input type="checkbox" name="plan_redes" value="LinkedIn"><span>LinkedIn</span></label>
+              <label class="opt"><input type="checkbox" name="plan_redes" value="YouTube"><span>YouTube</span></label>
+              <label class="opt"><input type="checkbox" name="plan_redes" value="outra"><span>outra</span></label>
+            </div></fieldset>
+          </div>
+
+          <div class="bloco" data-bloco="rot" hidden>
+            <span class="mono">sobre roteiro e copy</span>
+            <fieldset class="field"><legend>quantos vídeos por mês?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="rot_qtd" value="1 a 4"><span>1 a 4</span></label>
+              <label class="opt"><input type="radio" name="rot_qtd" value="5 a 8"><span>5 a 8</span></label>
+              <label class="opt"><input type="radio" name="rot_qtd" value="9 a 12"><span>9 a 12</span></label>
+              <label class="opt"><input type="radio" name="rot_qtd" value="mais de 12"><span>mais de 12</span></label>
+              <label class="opt"><input type="radio" name="rot_qtd" value="não sei"><span>não sei</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>quem grava?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="rot_grava" value="eu mesmo"><span>eu mesmo</span></label>
+              <label class="opt"><input type="radio" name="rot_grava" value="minha equipe"><span>minha equipe</span></label>
+              <label class="opt"><input type="radio" name="rot_grava" value="preciso de captação"><span>preciso de captação</span></label>
+              <label class="opt"><input type="radio" name="rot_grava" value="não sei"><span>não sei</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>seu tom de voz já está definido?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="rot_tom" value="sim"><span>sim</span></label>
+              <label class="opt"><input type="radio" name="rot_tom" value="mais ou menos"><span>mais ou menos</span></label>
+              <label class="opt"><input type="radio" name="rot_tom" value="não"><span>não</span></label>
+            </div></fieldset>
+          </div>
+
+          <div class="bloco" data-bloco="ed" hidden>
+            <span class="mono">sobre edição de vídeo</span>
+            <fieldset class="field"><legend>quantos vídeos por mês?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="ed_qtd" value="1 a 4"><span>1 a 4</span></label>
+              <label class="opt"><input type="radio" name="ed_qtd" value="5 a 8"><span>5 a 8</span></label>
+              <label class="opt"><input type="radio" name="ed_qtd" value="9 a 12"><span>9 a 12</span></label>
+              <label class="opt"><input type="radio" name="ed_qtd" value="mais de 12"><span>mais de 12</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>como chega o material?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="ed_material" value="gravação bruta"><span>gravação bruta</span></label>
+              <label class="opt"><input type="radio" name="ed_material" value="já cortado"><span>já cortado</span></label>
+              <label class="opt"><input type="radio" name="ed_material" value="só o roteiro, ainda vou gravar"><span>só o roteiro, ainda vou gravar</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>duração média</legend><div class="opts">
+              <label class="opt"><input type="radio" name="ed_duracao" value="até 30 segundos"><span>até 30 segundos</span></label>
+              <label class="opt"><input type="radio" name="ed_duracao" value="30 a 60 segundos"><span>30 a 60 segundos</span></label>
+              <label class="opt"><input type="radio" name="ed_duracao" value="1 a 3 minutos"><span>1 a 3 minutos</span></label>
+              <label class="opt"><input type="radio" name="ed_duracao" value="mais de 3 minutos"><span>mais de 3 minutos</span></label>
+            </div></fieldset>
+            <div class="field"><label for="f-edref">link de uma edição que você gosta (opcional)</label><input class="in-t" id="f-edref" name="ed_ref" type="text" placeholder="cole o link aqui"></div>
+          </div>
+
+          <div class="bloco" data-bloco="de" hidden>
+            <span class="mono">sobre posts e carrosséis</span>
+            <fieldset class="field"><legend>quantas artes por mês?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="de_qtd" value="até 4"><span>até 4</span></label>
+              <label class="opt"><input type="radio" name="de_qtd" value="5 a 8"><span>5 a 8</span></label>
+              <label class="opt"><input type="radio" name="de_qtd" value="9 a 15"><span>9 a 15</span></label>
+              <label class="opt"><input type="radio" name="de_qtd" value="mais de 15"><span>mais de 15</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>quais formatos?</legend><div class="opts">
+              <label class="opt"><input type="checkbox" name="de_formato" value="posts estáticos"><span>posts estáticos</span></label>
+              <label class="opt"><input type="checkbox" name="de_formato" value="carrosséis"><span>carrosséis</span></label>
+              <label class="opt"><input type="checkbox" name="de_formato" value="motion design"><span>motion design</span></label>
+              <label class="opt"><input type="checkbox" name="de_formato" value="stories"><span>stories</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>você tem identidade visual?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="de_identidade" value="completa, com manual"><span>completa, com manual</span></label>
+              <label class="opt"><input type="radio" name="de_identidade" value="só logo e cores"><span>só logo e cores</span></label>
+              <label class="opt"><input type="radio" name="de_identidade" value="não tenho"><span>não tenho</span></label>
+            </div></fieldset>
+          </div>
+
+          <div class="bloco" data-bloco="av" hidden>
+            <span class="mono">sobre avulso ou pack</span>
+            <fieldset class="field"><legend>o que você precisa?</legend><div class="opts">
+              <label class="opt"><input type="checkbox" name="av_itens" value="post estático"><span>post estático</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="carrossel"><span>carrossel</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="motion design"><span>motion design</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="reels, só edição"><span>reels, só edição</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="reels, roteiro e edição"><span>reels, roteiro e edição</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="reels, roteiro, captação e edição"><span>reels, roteiro, captação e edição</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="pack de posts"><span>pack de posts</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="pack de carrosséis"><span>pack de carrosséis</span></label>
+              <label class="opt"><input type="checkbox" name="av_itens" value="pack de reels editados"><span>pack de reels editados</span></label>
+            </div></fieldset>
+            <div class="field"><label for="f-avqtd">quantidade aproximada</label><input class="in-t" id="f-avqtd" name="av_qtd" type="text" placeholder="ex.: 8 posts e 2 reels"></div>
+          </div>
+
+          <div class="bloco" data-bloco="si" hidden>
+            <span class="mono">sobre o site</span>
+            <fieldset class="field"><legend>que tipo de site?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="si_tipo" value="página única"><span>página única</span></label>
+              <label class="opt"><input type="radio" name="si_tipo" value="site com seção de campanha"><span>site com seção de campanha</span></label>
+              <label class="opt"><input type="radio" name="si_tipo" value="site de até 5 páginas"><span>site de até 5 páginas</span></label>
+              <label class="opt"><input type="radio" name="si_tipo" value="não sei"><span>não sei</span></label>
+            </div></fieldset>
+            <fieldset class="field"><legend>você já tem domínio?</legend><div class="opts">
+              <label class="opt"><input type="radio" name="si_dominio" value="sim"><span>sim</span></label>
+              <label class="opt"><input type="radio" name="si_dominio" value="não"><span>não</span></label>
+            </div></fieldset>
+          </div>
+
+          <div class="bloco" data-bloco="nsei" hidden>
+            <span class="mono">sem problema</span>
+            <p style="margin:0">a gente descobre isso na conversa. no próximo passo, me conta seu objetivo.</p>
+          </div>
+
+          <div class="nav-btns"><button class="btn" type="button" data-prev><span aria-hidden="true">←</span> voltar</button><button class="btn y" type="button" data-next>continuar <span aria-hidden="true">→</span></button></div>
+        </section>
+
+        <section class="step" data-step="3" aria-label="Passo 3, detalhes">
+          <h3>quase lá.</h3>
+          <fieldset class="field"><legend>qual o objetivo principal nos próximos 3 meses?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="objetivo" value="vender mais"><span>vender mais</span></label>
+              <label class="opt"><input type="radio" name="objetivo" value="ganhar autoridade"><span>ganhar autoridade</span></label>
+              <label class="opt"><input type="radio" name="objetivo" value="crescer seguidores"><span>crescer seguidores</span></label>
+              <label class="opt"><input type="radio" name="objetivo" value="lançar algo"><span>lançar algo</span></label>
+              <label class="opt"><input type="radio" name="objetivo" value="organizar a rotina de conteúdo"><span>organizar a rotina de conteúdo</span></label>
+              <label class="opt"><input type="radio" name="objetivo" value="outro"><span>outro</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field"><legend>quando quer começar?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="inicio" value="o quanto antes"><span>o quanto antes</span></label>
+              <label class="opt"><input type="radio" name="inicio" value="neste mês"><span>neste mês</span></label>
+              <label class="opt"><input type="radio" name="inicio" value="no próximo mês"><span>no próximo mês</span></label>
+              <label class="opt"><input type="radio" name="inicio" value="só estou pesquisando"><span>só estou pesquisando</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field"><legend>algum plano mensal te interessa?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="plano" value="polaris, direção"><span>polaris, direção</span></label>
+              <label class="opt"><input type="radio" name="plano" value="antares, direção + edição"><span>antares, direção + edição</span></label>
+              <label class="opt"><input type="radio" name="plano" value="sirius, direção + edição + design"><span>sirius, direção + edição + design</span></label>
+              <label class="opt"><input type="radio" name="plano" value="personalizado"><span>personalizado</span></label>
+              <label class="opt"><input type="radio" name="plano" value="ainda não sei"><span>ainda não sei</span></label>
+            </div>
+            <p class="hint">os valores dos planos estão no pdf de serviços e valores. <a class="pdf" href="https://drive.google.com/file/d/1UJZBOWsbkscRuDUXfGTetuT2V_RkVHUM/view?usp=drivesdk" target="_blank" rel="noopener">clique aqui para ver o pdf ↗</a></p>
+          </fieldset>
+          <fieldset class="field"><legend>você teria um serviço para oferecer em troca (permuta)?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="permuta" value="não"><span>não</span></label>
+              <label class="opt"><input type="radio" name="permuta" value="sim"><span>sim</span></label>
+            </div>
+          </fieldset>
+          <div class="field" data-permuta-box hidden><label for="f-permuta">qual serviço?</label><input class="in-t" id="f-permuta" name="permuta_oque" type="text" disabled></div>
+          <div class="field"><label for="f-ref">perfis que você admira (opcional)</label><input class="in-t" id="f-ref" name="referencias" type="text" placeholder="@perfil1, @perfil2"></div>
+          <div class="field"><label for="f-msg">quer contar mais alguma coisa? (opcional)</label><textarea class="in-t" id="f-msg" name="mensagem"></textarea></div>
+          <label class="consent"><input type="checkbox" name="consentimento" value="sim" required><span>concordo em enviar esses dados para a lorenna entrar em contato comigo sobre este briefing.</span></label>
+          <p class="err" data-err="consentimento"></p>
+          <p class="err" data-err="envio" role="alert"></p>
+          <div class="nav-btns"><button class="btn" type="button" data-prev><span aria-hidden="true">←</span> voltar</button><button class="btn p" type="submit" data-submit>enviar briefing <span aria-hidden="true">→</span></button></div>
+        </section>
+      </form>
+
+      <div class="ok" data-ok aria-live="polite">
+        <svg class="spin" data-speed="60" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+        <h3 class="display" style="font-size:clamp(44px,7vw,64px)" data-ok-title>recebi.</h3>
+        <p data-ok-text style="margin:0;font-size:20px"></p>
+        <div class="btns"><a class="btn p" data-ok-wa href="#" target="_blank" rel="noopener">mandar também pelo whatsapp <span aria-hidden="true">↗</span></a><button class="btn" type="button" data-again>preencher de novo</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="band fim">
+  <svg class="deco spin" data-speed="25" data-depth="0.6" viewBox="0 0 100 100" aria-hidden="true"><use href="#estrela"/></svg>
+  <div class="wrap">
+    <div class="head mono"><span>@lorennadomkt</span><span>social media &amp; design</span></div>
+    <h2 class="display">lorenna<br>do mkt<span class="dot" style="color:var(--pink)">.</span></h2>
+    <div class="btns">
+      <a class="btn k mag" href="https://drive.google.com/file/d/1UJZBOWsbkscRuDUXfGTetuT2V_RkVHUM/view?usp=drivesdk" target="_blank" rel="noopener" data-pdf-link>serviços e valores <span aria-hidden="true">↗</span></a>
+      <a class="btn mag" href="https://wa.me/5511937799557" target="_blank" rel="noopener">me chama no whatsapp <span aria-hidden="true">↗</span></a>
+      <a class="btn mag" href="https://www.instagram.com/lorennadomkt/" target="_blank" rel="noopener">me chama no instagram <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="note">última atualização: 15/11/2026</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  // ---- configuração ----
+  // cole aqui o endereço do app da web do google apps script (termina em /exec). vazio = o briefing só sai pelo whatsapp.
+  var ENDPOINT = "";
+  var WHATS = "5511937799557";
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
+
+  // ---- letras do título ----
+  $$("[data-letters]").forEach(function (h) {
+    var t = h.textContent; h.textContent = "";
+    t.split("").forEach(function (c, i) { var s = el("span", "ch", c); s.style.setProperty("--i", i); h.appendChild(s); });
+  });
+
+  // ---- trabalhos: dados e renderização ----
+  var POSTS = "atrium.med p DfuupyAiUmI,ayreseco r DfsgtTPorcz,sarloren r Dfr9zTRBwDf,atrium.med r Dfr7g0QgsZa,atrium.med p DfpU-O0oEiw,atrium.med p Dfm6FSQo5Ud,dav.ayres p DflNiSnmGGw,ocaiovicente r DfaW7tlxDRp,gabrielronatty p DfXOyycHDXb,gabrielronatty p DfVZI5Mn8CQ,sarloren r DfUqi_xvBWJ,dav.ayres r DfSsglpDlR8,ocaiovicente r DfKixXkRZ9g,objetivoprime r DfKPjMVOwFO,bygabsnails p DfIgunggdvd,atrium.med p DfIEN02CSAS,atrium.med p DfIEE0KJxGf,atrium.med p DfICvu6Cdqb,ayreseco r DfH2jK6Ru8i,ocaiovicente r DfHiERFBnkR,ocaiovicente r DfGVagRx1WK,ocaiovicente r DfFdr0MR-wx,dav.ayres p DfDvzXEkSxp,sarloren r DfAe3D0uz3V,gabrielronatty r De2nvjOuJaa,sarloren r De2EftJhFWi,gabrielronatty p DesbTGECQGH,mestrapedagogia p DemRwpOHHG3,mestrapedagogia p DemRXnJnCmx,mestrapedagogia p DemRNd3HLI2,mestrapedagogia p DemQ8DuHOD_,mestrapedagogia p DemQxlWnL8X,mestrapedagogia p DemQjqbHBE1,gabrielronatty p Dej3ygTEdIz,dav.ayres p DeSzVP9xana,gabrielronatty p DeSx7yrkYpg,dav.ayres p DePUNlWERI0,gabrielronatty r DeNxV67s27x,objetivoprime p DeMyyYnlC87,gabrielronatty p DeJhSXskTvf,gabrielronatty r DeAbbNtvTzl,sarloren r Dd5T6qjtiP8,dav.ayres r Dd4nL0NPtz0,dav.ayres r Dd1Z2m7x4mn,gabrielronatty p DdclqMQndDL,ayreseco r DdZ9iEZx8_q,gabrielronatty r DdZsBCDPDhO,gabrielronatty r DdXcWDYPxfW,gabrielronatty p DdSCz0PHdDB,gabrielronatty r DdMuzK3v6_L,sarloren r DdHdszBsnsg,zeppiniecoflex p DW6CSkbFmOq,hydrozglobal p DWQ1lxiD1eP,hydrozglobal p DWMAlnTACTt,zeppiniecoflex p DWMAiIhCD9c,unikapbrasil p DWD9krAD329,hydrozglobal p DVf8u1QFmqU,zeppiniecoflex p DVQfeemElq_,hydrozglobal p DVQfYQYEhU8,unikapbrasil p DU-ioWiErRf,hydrozglobal p DU-h1Rsk3ki,unikapbrasil p DUYYA9ekoKx,zeppiniecoflex p DUYX4xpkphN,hydrozglobal p DUTG9Pzknwv,unikapbrasil p DUTG2d-EpyQ,zeppiniecoflex p DUFyjYODY5y,hydrozglobal p DUFyiDRDZEd,unikapbrasil p DUA7l5HEnpz,zeppiniecoflex p DTdIT4xEhKr,hydrozglobal p DSCd-oKjGCI,zeppiniecoflex p DR5Be33EvrG,unikapbrasil p DR5A2bskm9L,zeppiniecoflex p DRmJOIwk3ea,zeppiniecoflex p DRjkbg4DKyJ,hydrozglobal p DRg_o89DJdx,zeppiniecoflex p DRg_o8QAhDQ,hydrozglobal p DRedsUxAewh,unikapbrasil p DQKHoZqj6TR,zeppiniecoflex r DQCk1wOkXLp,zeppiniecoflex p DP7LdAVDIVb,zeppiniecoflex r DP6kZCgFMd-,zeppiniecoflex p DP2FCliD28Y,sunnyhub.energia p DIKU0GPs2_D,sunnyhub.energia p DF5uFRiRhHJ,sunnyhub.energia r DDNqPYXRMQ8,tininho.store1 r DAd9_trvBvF,tininho.store1 r C_eCKCMyI_x,tininho.store1 r C-LbR8WyoXn,tininho.store1 r C8cwMI-yZAp,tininho.store1 r C7rhv05uJHx,tininho.store1 r C7UvKSlSZr7,tininho.store1 r C7PsXwGh3rU,tininho.store1 r C7FMYyyv4Wf,tininho.store1 r C7CZ-0VrQwI,tininho.store1 r C54MakXSl3a,tininho.store1 r C5ZKk2nP5Y4,tininho.store1 r C5RrRR4L9Dw,tininho.store1 r C5MbnuBP_DW,tininho.store1 r C4YseHzPly2,tininho.store1 r C4RN7_dPjWR,tininho.store1 r C4Gzvs9SIuJ,tininho.store_02 r C30Xapcg3bt,tininho.store1 r C3AsWg2OifD,tininho.store1 r C1FrWlFPRs8,tininho.store1 r C04rrD_vxkA".split(",").map(function (s) { return s.split(" "); });
+  var PESSOAL = "sarloren";
+  var ORDEM = [];
+  POSTS.forEach(function (p) { if (ORDEM.indexOf(p[0]) < 0 && p[0] !== PESSOAL) ORDEM.push(p[0]); });
+  ORDEM.push(PESSOAL);
+  var chips = $("[data-chips]"), box = $("[data-perfis]"), perfis = [];
+  function chip(label, count, key) {
+    var b = el("button", "chip"); b.type = "button"; b.setAttribute("aria-pressed", key === "todos" ? "true" : "false"); b.dataset.key = key;
+    b.appendChild(document.createTextNode(label)); b.appendChild(el("b", "", String(count))); chips.appendChild(b);
+  }
+  chip("todos", POSTS.length, "todos");
+  ORDEM.forEach(function (perfil, n) {
+    var itens = POSTS.filter(function (p) { return p[0] === perfil; });
+    if (!itens.length) return;
+    chip("@" + perfil, itens.length, perfil);
+    var sec = el("section", "perfil rv" + (perfil === PESSOAL ? " pessoal" : "") + (itens.length <= 3 ? " small" : ""));
+    sec.dataset.perfil = perfil;
+    var head = el("header"), h3 = el("h3"), a = el("a", "", "@" + perfil);
+    a.href = "https://www.instagram.com/" + perfil + "/"; a.target = "_blank"; a.rel = "noopener";
+    h3.appendChild(a); head.appendChild(h3);
+    head.appendChild(el("span", "mono", (perfil === PESSOAL ? "perfil pessoal · " : "") + itens.length + (itens.length === 1 ? " publicação" : " publicações")));
+    sec.appendChild(head);
+    var grid = el("div", "posts");
+    itens.forEach(function (p) {
+      var reel = p[1] === "r", link = el("a", "post");
+      link.href = "https://www.instagram.com/" + perfil + "/" + (reel ? "reel" : "p") + "/" + p[2] + "/"; link.target = "_blank"; link.rel = "noopener";
+      link.setAttribute("aria-label", (reel ? "Reel" : "Post") + " de @" + perfil + " no Instagram");
+      var img = el("img"); img.src = "capas/" + p[2] + ".jpg"; img.loading = "lazy"; img.alt = "";
+      link.appendChild(img); link.appendChild(el("span", "tag" + (reel ? " reel" : ""), reel ? "reel" : "post"));
+      grid.appendChild(link);
+    });
+    sec.appendChild(grid); box.appendChild(sec); perfis.push(sec);
+  });
+  $("[data-total]").textContent = POSTS.length + " publicações · " + perfis.length + " perfis";
+  var cp = $('[data-k="posts"]'), cf = $('[data-k="perfis"]'); if (cp) cp.dataset.count = POSTS.length; if (cf) cf.dataset.count = perfis.length;
+  chips.addEventListener("click", function (ev) {
+    var b = ev.target.closest(".chip"); if (!b) return;
+    $$(".chip", chips).forEach(function (c) { c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+    perfis.forEach(function (s) { s.hidden = !(b.dataset.key === "todos" || s.dataset.perfil === b.dataset.key); });
+  });
+
+  // ---- revelar no scroll ----
+  var targets = $$(".rv, .split");
+  if (!("IntersectionObserver" in window) || reduce) { targets.forEach(function (t) { t.classList.add("in"); }); }
+  else {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+
+  // ---- contadores ----
+  function count(b) {
+    var to = +b.dataset.count || 0, suf = b.dataset.suf || "", t0 = null;
+    if (reduce) { b.textContent = to + suf; return; }
+    function step(t) { if (t0 === null) t0 = t; var k = Math.min((t - t0) / 1300, 1), v = Math.round(to * (1 - Math.pow(1 - k, 3))); b.textContent = v + suf; if (k < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var stats = $("[data-stats]");
+  if (stats && "IntersectionObserver" in window) {
+    var so = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { $$("b", stats).forEach(count); so.disconnect(); } }); }, { threshold: 0.4 });
+    so.observe(stats);
+  } else if (stats) { $$("b", stats).forEach(function (b) { b.textContent = (b.dataset.count || 0) + (b.dataset.suf || ""); }); }
+
+  // ---- estrelas giram: tempo + scroll + mouse ----
+  var stars = $$(".spin"), vis = new Set(), boost = 0, lastY = window.scrollY, last = 0;
+  stars.forEach(function (s) { s._a = Math.random() * 90; if (s.dataset.hover) { var lg = s.closest(".logo"); if (lg) { lg.addEventListener("pointerenter", function () { s._h = true; }); lg.addEventListener("pointerleave", function () { s._h = false; }); } } });
+  if (!reduce && "IntersectionObserver" in window) {
+    var sio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) vis.add(e.target); else vis.delete(e.target); }); });
+    stars.forEach(function (s) { sio.observe(s); });
+    var frame = function (now) {
+      var dt = Math.min((now - last) / 1000, 0.05); last = now;
+      var y = window.scrollY, dy = Math.abs(y - lastY); lastY = y;
+      boost += (Math.min(dy, 60) / 60 - boost) * 0.12;
+      vis.forEach(function (s) {
+        var base = parseFloat(s.dataset.speed) || 10, dir = base < 0 ? -1 : 1;
+        s._a += (Math.abs(base) * (1 + boost * 7) * (s._h ? 5 : 1)) * dt * dir;
+        s.style.transform = "rotate(" + s._a.toFixed(2) + "deg)";
+      });
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(function (t) { last = t; frame(t); });
+  }
+
+  // ---- mouse: estrelas da capa se afastam, cartões inclinam, botões atraem ----
+  if (fine && !reduce) {
+    var hero = $(".hero"), decos = $$(".deco[data-depth]", hero);
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      decos.forEach(function (d) { var k = parseFloat(d.dataset.depth) * 46; d.style.translate = (-x * k).toFixed(1) + "px " + (-y * k).toFixed(1) + "px"; });
+    });
+    $$(".tilt").forEach(function (c) {
+      c.addEventListener("pointermove", function (e) {
+        var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        c.style.transform = "perspective(900px) rotateX(" + (-y * 7).toFixed(2) + "deg) rotateY(" + (x * 7).toFixed(2) + "deg)";
+      });
+      c.addEventListener("pointerleave", function () { c.style.transform = ""; });
+    });
+    $$(".mag").forEach(function (b) {
+      b.addEventListener("pointermove", function (e) {
+        var r = b.getBoundingClientRect(), x = e.clientX - (r.left + r.width / 2), y = e.clientY - (r.top + r.height / 2);
+        b.style.translate = (x * 0.18).toFixed(1) + "px " + (y * 0.25).toFixed(1) + "px";
+      });
+      b.addEventListener("pointerleave", function () { b.style.translate = ""; });
+    });
+  }
+
+  // ---- menu: seção ativa, barra de progresso, menu no celular ----
+  var links = $$(".menu a"), secs = links.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  if ("IntersectionObserver" in window) {
+    var nio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { links.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id); }); } }); }, { rootMargin: "-35% 0px -60% 0px" });
+    secs.forEach(function (s) { if (s) nio.observe(s); });
+  }
+  var bar = $(".progress"), ticking = false;
+  function prog() { var h = document.documentElement.scrollHeight - window.innerHeight; bar.style.transform = "scaleX(" + (h > 0 ? Math.min(window.scrollY / h, 1) : 0).toFixed(4) + ")"; ticking = false; }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(prog); } }, { passive: true }); prog();
+  var burger = $(".burger"), menu = $("#menu");
+  burger.addEventListener("click", function () { var o = menu.classList.toggle("open"); burger.setAttribute("aria-expanded", o ? "true" : "false"); });
+  links.forEach(function (a) { a.addEventListener("click", function () { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
+
+  // ---- briefing ----
+  var form = $("#briefing"), card = $("[data-form-card]"), okBox = $("[data-ok]"), t0 = Date.now(), cur = 1;
+  var LABELS = { nome: "nome", whatsapp: "whatsapp", email: "e-mail", instagram: "instagram ou site", perfil_tipo: "você é", ramo: "ramo de atuação", servicos: "o que precisa", plan_situacao: "conteúdo hoje", plan_redes: "redes", rot_qtd: "vídeos por mês (roteiro)", rot_grava: "quem grava", rot_tom: "tom de voz definido", ed_qtd: "vídeos por mês (edição)", ed_material: "material", ed_duracao: "duração média", ed_ref: "referência de edição", de_qtd: "artes por mês", de_formato: "formatos", de_identidade: "identidade visual", av_itens: "avulso ou pack", av_qtd: "quantidade", si_tipo: "tipo de site", si_dominio: "já tem domínio", objetivo: "objetivo", inicio: "quando começar", plano: "plano de interesse", permuta: "permuta", permuta_oque: "permuta, qual serviço", referencias: "perfis que admira", mensagem: "mensagem" };
+  function showStep(n) {
+    cur = n;
+    $$(".step", form).forEach(function (s) { s.classList.toggle("on", +s.dataset.step === n); });
+    $$("[data-pill]").forEach(function (p) { var k = +p.dataset.pill; p.classList.toggle("on", k === n); p.classList.toggle("done", k < n); });
+    var top = card.getBoundingClientRect().top + window.scrollY - 90; window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+  }
+  function setErr(key, msg) { var p = $('[data-err="' + key + '"]'); if (p) p.textContent = msg || ""; var i = form.elements[key]; if (i && i.setAttribute) { if (msg) i.setAttribute("aria-invalid", "true"); else i.removeAttribute("aria-invalid"); } }
+  function checked(name) { return $$('input[name="' + name + '"]:checked', form).length > 0; }
+  function validate(n) {
+    var ok = true;
+    if (n === 1) {
+      var nome = form.elements.nome.value.trim(); setErr("nome", nome ? "" : "me diz seu nome."); if (!nome) ok = false;
+      var dig = form.elements.whatsapp.value.replace(/\D/g, ""); var wok = dig.length >= 10 && dig.length <= 13; setErr("whatsapp", wok ? "" : "confira o número, com DDD."); if (!wok) ok = false;
+      var em = form.elements.email.value.trim(); var eok = !em || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em); setErr("email", eok ? "" : "esse e-mail parece incompleto."); if (!eok) ok = false;
+      var pt = checked("perfil_tipo"); setErr("perfil_tipo", pt ? "" : "escolha uma opção."); if (!pt) ok = false;
+      var ramo = form.elements.ramo.value.trim(); setErr("ramo", ramo ? "" : "conta seu ramo de atuação."); if (!ramo) ok = false;
+    }
+    if (n === 2) { var sv = checked("servicos"); setErr("servicos", sv ? "" : "marque pelo menos uma opção."); if (!sv) ok = false; }
+    if (n === 3) { var cs = form.elements.consentimento.checked; setErr("consentimento", cs ? "" : "marque para eu poder te responder."); if (!cs) ok = false; }
+    if (!ok) { var first = $(".step.on .err:not(:empty)", form); if (first) { var f = first.closest(".field") || first.parentNode; var inp = f.querySelector("input, textarea, select"); if (inp) inp.focus({ preventScroll: false }); } }
+    return ok;
+  }
+  $$("[data-next]", form).forEach(function (b) { b.addEventListener("click", function () { if (validate(cur)) showStep(cur + 1); }); });
+  $$("[data-prev]", form).forEach(function (b) { b.addEventListener("click", function () { showStep(cur - 1); }); });
+  // blocos que aparecem conforme o serviço marcado
+  function blocks() {
+    $$('input[name="servicos"]', form).forEach(function (i) {
+      var bl = $('[data-bloco="' + i.dataset.block + '"]', form); if (!bl) return;
+      var on = i.checked; bl.hidden = !on;
+      $$("input, textarea, select", bl).forEach(function (f) { f.disabled = !on; });
+    });
+  }
+  $$('input[name="servicos"]', form).forEach(function (i) { i.addEventListener("change", blocks); }); blocks();
+  $$('input[name="permuta"]', form).forEach(function (i) { i.addEventListener("change", function () { var sim = form.elements.permuta.value === "sim"; $("[data-permuta-box]").hidden = !sim; form.elements.permuta_oque.disabled = !sim; }); });
+  form.elements.whatsapp.addEventListener("input", function (e) {
+    var d = e.target.value.replace(/\D/g, "").slice(0, 11), o = d;
+    if (d.length > 2) o = "(" + d.slice(0, 2) + ") " + d.slice(2, d.length > 10 ? 7 : 6) + (d.length > (d.length > 10 ? 7 : 6) ? "-" + d.slice(d.length > 10 ? 7 : 6) : "");
+    e.target.value = o;
+  });
+  function collect() {
+    var data = {}, fd = new FormData(form);
+    fd.forEach(function (v, k) { if (k === "empresa_site" || k === "consentimento" || v === "") return; data[k] = data[k] ? data[k] + ", " + v : v; });
+    return data;
+  }
+  function resumo(data) {
+    return Object.keys(LABELS).filter(function (k) { return data[k]; }).map(function (k) { return LABELS[k] + ": " + data[k]; }).join("\n");
+  }
+  function waLink(data) { return "https://wa.me/" + WHATS + "?text=" + encodeURIComponent("oi, lorenna! vim pelo seu portfólio e preenchi o briefing:\n\n" + resumo(data)); }
+  function done(title, text, data) {
+    form.hidden = true; $(".steps", form); okBox.classList.add("show");
+    $("[data-ok-title]").textContent = title; $("[data-ok-text]").textContent = text; $("[data-ok-wa]").href = waLink(data);
+    card.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  }
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (!validate(1)) { showStep(1); return; }
+    if (!validate(2)) { showStep(2); return; }
+    if (!validate(3)) return;
+    var data = collect(), btn = $("[data-submit]", form);
+    if (form.elements.empresa_site.value) return;
+    data.resumo = resumo(data); data.origem = location.hostname || "site"; data.tempo = String(Math.round((Date.now() - t0) / 1000));
+    if (!ENDPOINT) { done("quase.", "o envio automático deste site ainda não está ligado. toque no botão abaixo para mandar o seu briefing pelo whatsapp, já com tudo preenchido.", data); return; }
+    btn.disabled = true; setErr("envio", "");
+    var body = new URLSearchParams(); Object.keys(data).forEach(function (k) { body.append(k, data[k]); });
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", body: body })
+      .then(function () { done("recebi.", "seu briefing chegou. eu respondo pelo whatsapp. se preferir adiantar, mande também por aqui.", data); })
+      .catch(function () { btn.disabled = false; setErr("envio", "não consegui enviar agora. tente de novo ou mande pelo whatsapp."); var w = $("[data-wa-fallback]"); if (!w) { w = el("a", "btn", "mandar pelo whatsapp"); w.dataset.waFallback = "1"; w.target = "_blank"; w.rel = "noopener"; $('[data-err="envio"]').after(w); } w.href = waLink(data); });
+  });
+  $("[data-again]").addEventListener("click", function () { okBox.classList.remove("show"); form.hidden = false; form.reset(); blocks(); $("[data-permuta-box]").hidden = true; $$("[data-submit]", form).forEach(function (b) { b.disabled = false; }); showStep(1); });
+})();
+</script>
+</body></html>
